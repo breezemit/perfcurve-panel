@@ -5,9 +5,28 @@ import { CurveLineForms } from './CurveLineForms';
 import { DynamicCurveLineForms } from './DynamicCurveLineForms';
 import { PlotSeriesForms } from './PlotSeriesForms';
 import { AxisForms } from './AxisForms';
+import { SXAxis } from 'types/SXAxis';
+import { XAxisEditor } from 'editors/XAxisEditor';
+import { FieldSetEditor } from 'editors/FieldSetEditor';
 
 export const plugin = new PanelPlugin<CanvasOptions>(PerformanceCurvePanel).setPanelOptions((builder) => {
   return builder
+    .addCustomEditor({
+    id: 'SxAxis',
+    path: 'SxAxis',
+    name: 'X Axis Field',
+    category: ['X Axis'],
+    editor: XAxisEditor,
+    defaultValue: new SXAxis(-1, false),
+    })
+    .addCustomEditor({
+      id: 'fieldSets',
+      path: 'fieldSets',
+      name: 'Field(s)',
+      category: ['Y Axis'],
+      editor: FieldSetEditor,
+      defaultValue: [],
+    })
     .addCustomEditor({
       category: ['Axes'],
       id: 'xAxis',

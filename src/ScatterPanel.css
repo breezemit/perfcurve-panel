@@ -1,0 +1,131 @@
+.FieldSetEditor{
+  margin-bottom: 25px;
+}
+
+.ScatterFlex{
+  display:flex;
+  flex-wrap: nowrap;
+  padding:1px;
+}
+
+.ScatterSize{
+  width: 115px;
+}
+
+.ScatterSize input{
+  width: 55px;
+}
+
+.ScatterDotSize{
+  width: 220px;
+}
+
+.ScatterLineType{
+}
+
+.ScatterDotColor{
+    padding-top:7px;
+}
+
+.ScatterSelect{
+  display:flex;
+  min-width:160px;
+}
+
+.ScatterExtents{
+  display:flex;
+}
+
+.ScatterExtentLimit{
+  width: 180px;
+  padding-right:20px;
+}
+
+.ScatterMargins{
+  display:flex;
+}
+
+.ScatterMarginLimit{
+  width: 180px;
+  padding-right:20px;
+}
+
+.ScatterLabel{
+  padding-top: 6px;
+  width: 85px;
+  color: rgb(159, 167, 179);
+  font-size: 12px;
+  text-align: center;
+}
+
+.ScatterCheckbox {
+  padding-top: 6px;
+  padding-right: 10px;
+  width: 75px;
+  color: rgb(159, 167, 179);
+  font-size: 12px;
+  text-align: right;
+}
+
+.ScatterFlex label {
+  margin-top: 5px;
+}
+
+.ScatterSetHidden{
+  fill:rgba(119, 119, 119, 0.25);
+}
+
+.ScatterLine{
+  fill: none;
+}
+
+.ScatterLineHidden{
+  opacity: 0.25;
+  stroke-width: 1px;
+}
+
+.TitleEditor{
+    display:flex;
+}
+
+.TitleText{
+    width:160px;
+}
+
+.TitleColor{
+    padding-top:7px;
+}
+
+.LabelEditor{
+  display:flex;
+}
+
+.LabelColor{
+  padding-top:7px;
+}
+
+
+.ScatterLegend input {
+  width: 50px;
+}
+
+.ScatterLegendText{
+    border: 1px solid rgb(255, 255, 255); 
+}
+
+.ScatterLegendTextHidden{
+    fill:rgba(119, 119, 119, 0.25);
+}
+
+.ScatterTooltip {	
+  position: absolute;			
+  text-align: center;			
+  width: 60px;					
+  height: 28px;					
+  padding: 2px;				
+  font: 12px sans-serif;		
+  background: lightsteelblue;	
+  border: 0px;		
+  border-radius: 8px;			
+  pointer-events: none;			
+}

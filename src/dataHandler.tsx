@@ -29,6 +29,7 @@ export const mergeXYField = (fieldPlotX: MergedFieldsProps, fieldPlotY: MergedFi
   timeArrayXY.map((timestamp, index) => {
     timeXYData[index] = { timestamp: timestamp, x: timeValueObjectX[timestamp], y: timeValueObjectY[timestamp] };
   });
+  console.log(timeXYData)
   return timeXYData;
 };
 

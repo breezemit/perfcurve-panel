@@ -1,5 +1,6 @@
 import { Field } from '@grafana/data';
-
+import { FieldSet } from 'types/FieldSet';
+import { XAxis } from './XAxis';
 export interface CurvePoints {
   performCurveX: string;
   performCurveY: string;
@@ -29,10 +30,19 @@ export interface Axis {
   unit: string | undefined;
   decimals: number | undefined;
 }
-
+export class XAxis {
+  constructor(
+    public col: number,
+    public inverted: boolean,
+  ) {
+  }
+}
 export interface CanvasOptions {
+  SxAxis: SXAxis,
   xAxis: Axis;
   yAxis: Axis;
+  yAxisFields: number[],
+  fieldSets: FieldSet[],
   performanceCurveData: CurvePoints[];
   dynamicPerfCurve: CurveGroup[];
   plotSetting: PlotSeries[];

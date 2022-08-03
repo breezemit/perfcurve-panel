@@ -7,8 +7,47 @@ import { CanvasOptions, CurvePoints, MergedFieldsProps, TimeXYDatumProps } from 
 import { Curves } from './Curves';
 import { PlotCircles } from './PlotCircles';
 import { createMergedFields, mergeXYField } from './dataHandler';
+import { ScatterOptions } from 'types/ScatterOptions';
+import { ColData } from 'types/ColData';
+import { FieldSet } from 'types/FieldSet';
+import './ScatterPanel.css';
 
 interface Props extends PanelProps<CanvasOptions> {}
+
+function drawDots(options: ScatterOptions,
+  fieldSets: FieldSet[],
+  xValues: number[],
+  yValues: number[][],
+  colValues: number[][],
+  xScale: Function,
+  yScale: Function) {
+  return fieldSets.map((y, i: number) => (
+    xValues.map((x, j) => {
+      const dotSize = y.sizeCol >= 0 ? colValues[y.sizeCol][j] : -y.sizeCol;
+
+      const yValue = yValues[i][j];
+
+      if (dotSize > 0 && yValue != null) {
+        let className = `ScatterSet-${i}`;
+        // if (options.legend.size && y.hidden) {
+        //   className += ' ScatterSetHidden';
+        // }
+
+        return (
+          <circle
+            key={`circle-[${y}][${i}]`}
+            cx={xScale(x)}
+            cy={yScale(yValue)}
+            r={dotSize}
+            className={className}
+            fill={y.color}
+          />
+        );
+      }
+      return <div key={`circle-[${y}][${i}]`} />;
+    })
+  ));
+}
 
 export const PerformanceCurvePanel: React.FC<Props> = ({ options, data, width, height, timeZone }) => {
   const styles = getStyles();
@@ -128,6 +167,35 @@ export const PerformanceCurvePanel: React.FC<Props> = ({ options, data, width, h
   // Create axis
   const xAxis = d3.axisBottom(xScale).ticks(width / 80);
   const yAxis = d3.axisLeft(yScale).ticks(height / 80);
+
+  // add drawDots 
+  // if (data.series?.length > 0) {
+  // }
+    const frame = data.series[0];
+
+    const colData = new Array(0);
+    frame.fields.forEach((field) => {
+      colData.push(new ColData(
+        field.name,
+        field.config?.displayName || field.name,
+        field.type,
+        field.values.toArray().map((v) => v as number),
+      ));
+    });
+  
+  const fieldSets = options.fieldSets.filter((x) => x != null && x?.col >= 0 && x?.col < colData.length);
+  if (fieldSets.length === 0) {
+    return (
+      <div style={{ overflow: 'hidden', height: '100%' }}>
+        <p>No Y Axis(s) data found in current query</p>
+      </div>
+    );
+  }
+
+  const colValues = colData.map((c) => c.values);
+  const xValues = colData[options.SxAxis.col].type !== 'string' ? colValues[options.SxAxis.col] : Array.from(colValues[0], (x, i) => i + 1);
+  const yValues = fieldSets.map((f) => colValues[f.col]);
+
 
   // Draw performance curve
   const curveGenerator = d3
@@ -269,6 +337,9 @@ export const PerformanceCurvePanel: React.FC<Props> = ({ options, data, width, h
           );
         })}
         {/* Plot */}
+        <g id="dots">
+          {drawDots(options, fieldSets, xValues, yValues, colValues, xScale, yScale)}
+        </g>
         <g id="plot-group">
           {dataPlot.map((data, i) => {
             return (
@@ -311,4 +382,4 @@ const getStyles = () => {
       padding: 10px;
     `,
   };
-};
+}

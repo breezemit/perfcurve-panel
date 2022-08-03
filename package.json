@@ -1,28 +1,34 @@
 {
-  "name": "sskgo-perfcurve-panel",
-  "version": "1.5.0",
-  "description": "Plot rotating machine operation point on a performance curve canvas.",
-  "scripts": {
-    "build": "grafana-toolkit plugin:build",
-    "test": "grafana-toolkit plugin:test",
-    "dev": "grafana-toolkit plugin:dev",
-    "watch": "grafana-toolkit plugin:dev --watch"
-  },
-  "repository": "github:SSKGo/perfcurve-panel",
-  "author": "SSKGo",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/SSKGo/perfcurve-panel/issues"
-  },
-  "devDependencies": {
-    "@grafana/data": "latest",
-    "@grafana/toolkit": "latest",
-    "@grafana/ui": "latest",
-    "@types/d3": "^5.7.2",
-    "emotion": "10.0.27",
-    "tslib": "^2.3.0"
-  },
-  "engines": {
-    "node": ">=14"
-  }
+    "name": "sskgo-perfcurve-panel",
+    "version": "1.5.0",
+    "description": "Plot rotating machine operation point on a performance curve canvas.",
+    "scripts": {
+        "build": "grafana-toolkit plugin:build",
+        "test": "grafana-toolkit plugin:test",
+        "dev": "grafana-toolkit plugin:dev",
+        "watch": "grafana-toolkit plugin:dev --watch"
+    },
+    "repository": "github:SSKGo/perfcurve-panel",
+    "author": "SSKGo",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/SSKGo/perfcurve-panel/issues"
+    },
+    "devDependencies": {
+        "@grafana/data": "latest",
+        "@grafana/toolkit": "latest",
+        "@grafana/ui": "latest",
+        "@types/d3": "^5.7.2",
+        "emotion": "10.0.27",
+        "tslib": "^2.3.0"
+    },
+    "engines": {
+        "node": ">=14"
+    },
+    "dependencies": {
+        "@grafana/data": "latest",
+        "@grafana/ui": "latest",
+        "@types/randomcolor": "^0.5.5",
+        "randomcolor": "^0.6.2"
+    }
 }
